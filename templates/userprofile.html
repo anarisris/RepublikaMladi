@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Профил{% endblock %}
+{% block content %}
+
+<div id="main">
+    <div class="wrapper clearfix">
+      <div class="row" class="clearfix">			
+	    	<h2 class="page-heading"><span>Профил на корисник</span></h2>
+	    	
+	    	<div class="span7">
+				<h2>{{ user }}</h2>
+			</div>
+			
+			<div class="span7" id="last-seen">
+				<span><span>Дебатира од: {{ user.date_joined }}</span></span>
+				<br />
+				<span><span>Последен пат виден/а на: {{ user.last_login }}</span></span>
+			</div>
+			
+					
+			<div class="span6" id="notes">
+				<h5><span>Мои мислења</span></h5>
+				{% for note in all_notes %}
+				<div class="single-user-note">
+					<h5>{{ note.title }}</h5>
+					{{ note.message|safe }}
+					<br />
+					За дебата: <a href="{{ note.debate.get_absolute_url }}" class="thoughts-on-debate">{{ note.debate }}</a>
+					<br />{{ note.date }}
+				</div>
+				{% endfor %}
+			</div>
+			
+			<div class="span6" id="user-comments">
+				<h5><span>Мои коментари на мислења</span></h5>
+				{% for c in all_comments %}
+				<div class="single-user-note">
+					{{ c.comment|safe }}
+					<br />{{ c.submit_date }}
+				</div>
+				{% endfor %}
+			</div>
+		 </div>		 
+		</div>
+</div>
+{% endblock %}

@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load wysiwyg %}
+{% load comments %}
+{% load facebook %}
+{% load twitter %}
+{% load foursquare %}
+{% load ratings %}
+{% block title %}{% trans "Дебатирај за" %} {{ debate.title }}{% endblock %}
+{% block content %}
+
+    <div class="wrapper-theme">
+        <div class="span12">
+            <h2 class="span12-h2">Дебатирај!</h2>
+        </div>
+    </div>
+    <div class="wrapper-theme-content">
+    	<div class="span4">
+            <div class="debate-pic"><img src="/static/img/images/frame-pic.png" class="frame-pic"><img src="{{ debate.image.url }}" class="framed-pic"/></div>
+            <div class="debate-pic"><img src="/static/img/images/frame-vid.png" class="frame-pic"/><iframe width="302" height="170" src="{{ debate.video }}" frameborder="0" class="framed-vid" allowfullscreen></iframe></div>
+
+             
+        </div>
+        <div class="span8">
+        	<h4 class="debate-title">{{ debate.title}}</h4>
+        	<div style="clear:both"></div>
+            <p><strong>{% trans "Опис:" %}</strong> {{ debate.description }}</p>
+            <p><strong>{% trans "Опсег на дебатата:" %}</strong> {{ debate.scope }}</p>
+            <p><strong>{% trans "Почеток:" %}</strong> {% if debate.start_date %}{{ debate.start_date }}{% else %}{% trans "Нема датум"%}{% endif %}</p>
+           <p><strong>{% trans "Крај:" %}</strong> {% if debate.end_date %}{{ debate.end_date }}{% else %}{% trans "Нема датум"%}{% endif %}</p>
+                <div class="add-note" id="new-note" {% if user.is_anonymous %}onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'"{% endif %}{% if user.is_authenticated %}onclick="createNote()"{% endif %}>{% trans "Додади мислење" %}</div>
+                <div id="sortable-dispatcher"></div>
+
+        </div>
+<div id="light" class="white_content">{% if user.is_anonymous %}
+<div class="social_buttons">
+{% facebook_button %}
+{% twitter_button %}
+</div>
+{% endif %}
+<a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"></div>
+    </div>
+
+<div id="fade" class="black_overlay"></div>
+<div style="clear:both"></div>
+    <div class="row">
+        <div class="span12 specialmargin">
+            <div id="debate-number" class="hidden">{{ debate.pk }}</div>
+            <div id="last-note" class="hidden">{{ lastnote }}</div>
+            
+            <div id="debate">
+<br/><br/>
+<p id="filter">Подреди ги по: <a href="/debate/{{ debate.pk }}/votes_count/">Број на гласови</a>, <a href="/debate/{{ debate.pk }}/comment_count/">Број на коментари</a>, <a href="/debate/{{ debate.pk }}/date/">Датум</a>.</p>
+    
+
+                <table id="debate{{ debate.pk }}" cellspacing="0" style="width:100%;" align="left">
+                    <thead>
+                        <tr id="debate{{ debate.pk }}-headers">
+                            <th id="corner" class="corner-criteria"></th>
+                            {% for col in columns %}
+                                <th id="col-{{ col.id }}">{{ col.criteria }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody id="debate-body">
+                       
+                        {% for row in rows %}
+                            <tr id="debate-row-{{ forloop.counter }}">
+                                {% comment %}
+                                    The th style width is meant to make smaller the th, since most browsers make
+                                    the th fill all the space.
+                                {% endcomment %}
+                                <th id="row-{{ row.id }}" width="1%"><div class="debate-ttitle">{{ row.criteria }}</div></th>
+                                {% for td in columns %}
+                                    <td headers="{{ td.id }}-{{ row.id }}" id="sortable-debate" class="connectedSortable">
+                                        {% for note in notes_by_date_desc %}
+                                            {% if note.column.id == td.id and note.row.id == row.id %}
+                                                <div id="{{ note.id }}" class="note mine">
+                                                    <div class="handler">
+                                                        {% if note.author == user and perms.note.delete_note or user.is_staff %}
+                                                            <div class="deletenote hidden"><a href="#" onclick="deleteNote(this)" id="deletenote" title="{% trans 'Избриши мислење' %}">x</a></div>
+                                                        {% endif %}
+                                                    </div>
+                                                    <span class="note-text">{{ note.title|truncatechars:45 }}</span>
+                                                    <div style="clear:both;"></div>
+                                                    <span id="view-note" class="label hidden"><a href="#" onclick="viewNote(this)" data-toggle="modal" data-target="#view-current-note">{% trans "Види" %}</a></span>
+                                                    {% if note.author == user %}
+                                                        <span id="edit-note" class="label hidden"><a href="#" onclick="editNote(this)" data-toggle="modal" data-target="#edit-current-note">{% trans "Измени" %}</a></span>
+ 
+                                                    {% endif %}
+<div class="details">
+<div style="clear: both"></div>                                                   
+{% if user.is_authenticated %}
+{% rating_by_request request on note.rating as vote %}
+{% rating_by_user user on note.rating as vote %}
+<a href="../rate-my-post/{{ note.id }}/1" class="vote">Гласај +1</a>
+{% endif %}
+<div style="clear:both;"></div>
+<span class="votes">{{ note.rating.score }} гласови</span><div style="clear:both;"></div>
+{% get_comment_count for note as comment_count %}
+<span class="comments">{{ comment_count }} коментари</span>
+</div>
+
+
+                                                </div>
+                                            {% endif %}
+
+                                        {% endfor %}
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+                <br />
+                <div id="edit-current-note" class="modal hide fade" style="display: none; ">
+                    <div class="modal-header">
+                        <a class="close" data-dismiss="modal">×</a>
+                        <h3>{% trans "Измени мислење" %}</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form enctype="" action="" method="post">{% csrf_token %}
+
+                            <div class="clearfix">
+                                <label for="prependedInput">{% trans "Наслов на мислењето" %}</label>
+                                <div class="input">
+                                    <input type="text" name="notename" />
+                                    <span class="help-inline">{% trans "100 карактери" %}</span>
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                                <label for="prependedInput">{% trans "Опис" %}</label>
+                                <div class="input">
+                                    <textarea id="id_note_message"></textarea>
+                                    {% wysiwyg_editor "id_note_message" %}
+                                    <span class="help-inline"></span>
+                                </div>
+                            </div>
+                            <div id="last-edited-note" class="hidden"></div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" onclick="saveNote()" class="btn1 btn-primary1">{% trans "Зачувај" %}</a>
+                    </div>
+                </div>
+
+                <div id="view-current-note" class="modal hide fade" style="display: none; ">
+                    <div class="modal-header">
+                        <a class="close" data-dismiss="modal">×</a>
+                        <h3>{% trans "Види мислење" %}</h3>
+                    </div>
+                    <div class="modal-body">
+                        <h5 id="view-note-title"></h5>
+                        <p id="view-note-desc"></p>
+                        <p id="view-note-author"></p>
+                        <span id="num-comments"></span>
+                        <div id="comments"></div>
+                    <div class="modal-footer">
+{% if user.is_authenticated %}
+<form id="form_comments" action="{% comment_form_target %}" method="post">
+   {% csrf_token %}
+<table>
+<tr>
+     <td colspan="2">
+       <div class="kopce"></div>
+       <input type="submit" name="submit" value="Прати">
+       <input type="submit" name="preview" value="Прегледај">
+     </td>
+   </tr>
+</table>
+</form>
+{% endif %}
+<div id="intense"></div>                    
+</div>
+                </div>
+             </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/debate_board.js" type="text/javascript"></script>
+{% endblock %}

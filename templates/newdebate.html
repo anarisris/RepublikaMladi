@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %} Поднеси нова дебата {% endblock %}
+{% block content %}
+<!-- MAIN -->
+<div id="main">
+<div class="wrapper clearfix">
+
+<h2 class="page-heading"><span>ПОДНЕСИ НОВА ДЕБАТА</span></h2>
+<form action="." method="post">{% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{ form.subject.errors }}
+        <label for="id_subject">Наслов на пораката:</label>
+        {{ form.subject }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.debate_title.errors }}
+        <label for="id_debate_title">Наслов на дебатата:</label>
+        {{ form.debate_title }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.debate_scope.errors }}
+        <label for="id_debate_scope">Опсег на дебатата:</label>
+        {{ form.debate_scope }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.debate_description.errors }}
+        <label for="id_debate_description">Опис на дебатата:</label>
+        {{ form.debate_description }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.sender.errors }}
+        <label for="id_sender">Email адреса:</label>
+        {{ form.sender }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.cc_myself.errors }}
+        {{ form.cc_myself }}
+        <label for="id_cc_myself" id="myself">Сакам да ми пристигне копија од пораката</label>
+    </div>
+    <p>
+    <div style="clear: both;"></div>
+    <input type="submit" value="Испрати" class="btn1 btn-primary1" /></p>
+</form>
+</div>
+</div>
+<!-- page content -->
+{% endblock %}
+

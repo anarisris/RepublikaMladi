@@ -1,0 +1,14 @@
+
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Ви благодариме за коментарот" %}.{% endblock %}
+
+{% block content %}
+<div id="main">
+<div class="wrapper clearfix">
+	   <h2 class="page-heading">{% trans "Ви благодариме за коментарот!" %}</h2>
+ <a href="#" onclick="window.location.href = document.referrer;" id="back">
+ 	<span id="back-icon">Врати се назад</span>
+ 	</a>
+</div></div>
+{% endblock %}

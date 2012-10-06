@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Регистрирање" %}{% endblock %}
+
+{% block content %}
+<div id="main">
+                                <div class="wrapper clearfix">
+    <h2 class="page-heading"><span>{% trans "Регистрација" %}</span></h2>
+
+  <form action="" method="post">{% csrf_token %}
+    {{ form }}
+    <p class="submit">
+    	<div style="margin-top: 30px">
+    <input type="submit" name="submit" class="submit-post" value="{% trans "Регистрирај се" %}" /></div>
+    </p>
+  </form>
+</div>
+</div>
+{% endblock %}

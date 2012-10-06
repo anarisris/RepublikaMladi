@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+
+<div id="main">
+    <div class="wrapper clearfix">
+    	<div id="posts-list">
+		<h2 class="page-heading"><span>Blog</span></h2>
+        <article class="format-standard">
+        	<div class="entry-date"><div class="number">{{ post.published|date:"j" }}</div> <div class="year">{{ post.published|date:"F, Y" }}</div></div>
+            <div class="feature-image">
+                <a href="img/slides/01.jpg" data-rel="prettyPhoto"><img src="{{ post.image.url }}" alt="Alt text" /></a></div>
+            <h5 class="post-heading"><a href="/blog{{ post.get_absolute_url }}" title="{{ post.title }}">
+                    {{ post.title }}
+            </a></h5>
+            <div class="post-content">{{ post.body|safe }}</div>
+            <!--<div class="meta">
+                <div class="categories">?? <a href="#"></a></div>
+                <div class="comments"><a href="#">5 ?????????</a></div>
+                <div class="user"><a href="#">?????</a></div>
+            </div>-->
+        </article>
+
+{% if previous_post %}
+<div id="prev">
+	<a href="/blog{{ previous_post.get_absolute_url }}" title="{{ previous_post.title }}" id="previous-post">&laquo; претходен напис</a>
+	<br/>
+	<a href="/blog{{ previous_post.get_absolute_url }}" title="{{ previous_post.title }}" id="previous-post-title">{{ previous_post.title }}</a>
+</div>
+{% endif %}
+
+<!--
+{% if previous_post and next_post %}&nbsp;|&nbsp;{% endif %}
+-->
+
+{% if next_post %}
+<div id="next">
+	<a href="/blog{{ next_post.get_absolute_url }}" title="{{ next_post.get_absolute_url }}" id="next-post">
+    следен напис &raquo;</a>
+	<br/>
+	<a href="/blog{{ next_post.get_absolute_url }}" title="{{ next_post.get_absolute_url }}" id="next-post-title">{{ next_post.title }}</a>
+</div>
+{% endif %}
+
+<div style="clear: both; border-bottom: 4px double #CCC; padding: 30px 0;"></div>
+
+
+<script>
+var idcomments_acct = '11f2982d1dd4e3a87ebe8599ab804f6d';
+var idcomments_post_id;
+var idcomments_post_url;
+</script>
+<span id="IDCommentsPostTitle" style="display:none"></span>
+<script type='text/javascript' src='http://www.intensedebate.com/js/genericCommentWrapperV2.js'></script>
+		</div>
+       
+<aside id="sidebar">
+
+    <ul>
+        <li class="block">
+	        <h4 class="page-heading-categories"><span>Категории</span></h4>
+	        <ul>
+	            {% if categories %}
+	            {% for category in categories %}
+	            <li class="cat-item"><a href="/blog/category/{{ category.name.lower }}/"
+	                title="{{ category.name.capitalize }}">
+	                 {{ category.name.capitalize }}</a>
+	             </li>
+	             {% endfor %}
+	             {% endif %}
+	        </ul>
+        </li>
+		<li class="block">
+	        <h4 class="page-heading-tags"><span>Тагови</span></h4>
+	        <ul>
+	            {% if tags %}
+	            {% for tag in tags %}
+	            <li class="cat-item-tag"><a href="/blog/tag/{{ tag.name.lower }}/"
+	                title="{{ tag.name.capitalize }}">
+	                 {{ tag.name.capitalize }}</a>
+	             </li>
+	             {% endfor %}
+	             {% endif %}
+	        </ul>
+        </li>
+
+     <li class="block">
+        <h4 class="page-heading-archive"><span>Архива</span></h4>
+        <ul>
+        {% for year, month_list in archives %}
+        {{ year }} архива:
+        {% for month, has_link, rom_month in month_list %}
+        {% if has_link %}<a href="/blog/{{ month.month }}/{{ month.year }}/">{% endif %}
+        {{ month|date:"M" }}
+        {{ rom_month }}
+        {% if has_link %}</a>{% endif %}
+        {% endfor %}
+        {% endfor %}
+        </ul>
+
+        </li>
+ </ul>
+              
+     </aside>
+            <!-- ENDS sidebar -->
+
+</div>
+</div>
+{% endblock %}
+

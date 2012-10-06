@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Прегледајте го коментарот" %}{% endblock %}
+
+{% block content %}
+<div id="main">
+                                <div class="wrapper clearfix">
+
+  {% load comments %}
+  <form action="{% comment_form_target %}" method="post">{% csrf_token %}
+    {% if next %}<div><input type="hidden" name="next" value="{{ next }}" /></div>{% endif %}
+    {% if form.errors %}
+    <h2 class="page-heading"><span>{% blocktrans count counter=form.errors|length %}Please correct the error below{% plural %}Please correct the errors below{% endblocktrans %}</span></h2>	
+    {% else %}
+    <h2 class="page-heading"><span>{% trans "Прегледајте го коментарот" %}</span></h2>	
+      <blockquote>{{ comment|linebreaks }}</blockquote>
+      <p>
+      {% trans "и" %} <input type="submit" name="submit" class="submit-post" value="{% trans "Испратете го коментарот" %}" id="submit" /> {% trans "или направете промени" %}:
+      </p>
+    {% endif %}
+    {% for field in form %}
+      {% if field.is_hidden %}
+        <div>{{ field }}</div>
+      {% else %}
+        
+        <span
+          {% if field.errors %} class="error"{% endif %}
+          {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
+          {{ field.label_tag }} {{ field }}
+                  {% if field.errors %}{{ field.errors }}{% endif %}<div style="clear:both"></div>
+        </span>
+      {% endif %}
+    {% endfor %}
+    <p class="submit">
+    <input type="submit" name="submit" class="submit-post" value="{% trans "Post" %}" />
+    <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}" />
+    </p>
+  </form>
+</div>
+</div>
+{% endblock %}

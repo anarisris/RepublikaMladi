@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Република Млади" %}{% endblock %}
+{% block content %}
+
+
+
+                 	<div id="main">
+                 		<div class="wrapper clearfix">
+                 			<div class = "row">
+								<div class="left">
+                                    	<h1 id="tagline">
+										во одбрана на младинското учество!
+										</h1>
+                                  </div>
+                                    <div class="right">
+										<p class="teaser_text">
+									Во Македонија живеат речиси ½ милион млади граѓани на возраст од 15 до 30 години. Средношколци, студенти, постдипломци, невработени, вработени, определени, неопределени, групи или индивидуи. 
+									Секогаш разбиени, никогаш здружени. 20 години исклучени од одлучувањето, a згора на тоа, обвинети за летаргичност.
+										</p>
+ 
+										<p class="teaser_text">
+									Република Млади е иницијатива за одбрана на младинското учство. 60-тина организации од Македонија се заложија да ја предизвикаат младинската мисла и да го рашират младинскиот глас. 
+									Република Млади ве повикува да се вклучите во креирање платформа за младинска демократија и во обезбедување учество и влијание на младите во одлучувањето на сите нивоа во државата.
+ 									УЧЕСТВУВАЈ! 
+										</p>
+                                       </div>
+							</div> <!--end first row-->
+							
+							<div class="row">
+								<ul class="teasers">
+                                	<li class="novo" onMouseOver="show('more-novo')" onMouseOut="hide('more-novo')">
+									<a href="/blog/" id="more-novo">
+										<span>
+                                    	Републички вести за млади.<br/>Новости за одбрана на младинското учество.
+                                    	</span>
+                                    </a>
+                                    </li>
+								<li class="debatiraj" onMouseOver="show('more-debatiraj')" onMouseOut="hide('more-debatiraj')">
+                                	<a href="/debate/" id="more-debatiraj">
+                                		<span>Дискусија за младинската <br />
+политика во Македонија.<br />
+ Прочитај, почитувај, <br />
+учествувај!
+</span>
+</a>
+									
+								</li>
+								<li class="info" onMouseOver="show('more-info')" onMouseOut="hide('more-info')">
+									<a href="/dokumenti/" id="more-info">
+										<span>Важни документи 
+за млади. <br />
+Се на едно место, <br />
+регулативи, политики, истражувања.
+</span>
+</a>
+								</li>
+							</ul><!-- end of second row -->
+                            
+							
+							
+                 		</div><!-- end wrapper-->
+                 	</div><!-- end main-->                
+   
+
+                 </div> <!-- end content -->
+                 {% endblock %}

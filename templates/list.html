@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if previous %}
+Архива {{ previous }}
+{% else %}
+Република Млади Блог
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+<div id="main">
+​​
+    <div class="wrapper clearfix">
+        <div id="posts-list">
+            <h2 class="page-heading"><span>Што е ново?<span></h2>
+            
+            <div class="portfolio-thumbs clearfix">
+			{% for post in posts %}
+			{% if post == latest %}
+				<article class="format-standard">
+					<div class="entry-date">
+						<div class="number">{{ post.published|date:"j" }}</div>
+						<div class="year">{{ post.published|date:"F, Y" }}</div>
+					</div>
+					
+					<div class="feature-image">
+						<a href="{{ post.image.url }}" data-rel="prettyPhoto"><img src="{{ post.image.url }}" alt="Alt text" /></a>
+									
+						<div id = "last-post">
+							<h5 class="post-heading">
+								<a href="/blog{{ post.get_absolute_url }}" title="{{ post.title }}">{{ post.title }}</a>
+							</h5>
+						
+							<div class="excerpt">{{ post.description|safe }}</div>
+							<a href="/blog/{{ post.get_absolute_url }}" class="read-more">прочитај повеќе&#8594;</a>
+						</div>
+					</div>
+				</article>
+				{% endif %}
+				<figure>
+	        			<figcaption>
+							<div class="post-teaser">
+								
+								<a href="/blog/{{ post.get_absolute_url }}">
+								<em style="display: block; float: left; margin: 10px 10px 0px 10px; font-weight: bold; position: relative; z-index: 100;font-size: 12px; color: #ec1c24;">{{ post.published|date:"j" }} {{ post.published|date:"F, Y" }}</em>
+								<span style="display: block; margin: 10px; position: none;">{{ post.title }}</span>
+								</a>
+								<div class="post-teaser-h">
+							   </div>
+							</div>
+		        		</figcaption>		        		
+		        		<a href="{{ post.image.url }}" data-rel="prettyPhoto" class="thumb post-img"><img src="{{ post.image.url }}" alt="Alt text" /></a>
+						<a class = "more" href="/blog/{{ post.get_absolute_url }}">прочитај повеќе&#8594;</a>
+				</figure>
+				
+			   <!-- <div class="meta">
+				{% for category in categories %}
+					<div class="categories">Во <a href="/blog/category/{{ category.name.lower }}/"
+					title="{{ category.name.capitalize }}">{{ category.name.capitalize }}</a></div>
+					<div class="comments">Ознаки {% for tag in tags %}<a href="/blog/tag/{{ tag.name.lower }}/"
+					title="{{ tag.name.capitalize }}">{{ tag.name.capitalize }}</a></div>
+				{% endfor %}
+				{% endfor %}
+					<div class="user">{{ post.author }}</div>
+				</div>-->
+			{% endfor %}
+            </div>
+            <hr>
+            
+
+            {% if previous %} <a href="/blog/archive/{{ previous }}/">&laquo; Previous</a>
+            {% endif %}
+            {% if next and previous %}
+            &nbsp;|&nbsp;
+            {% endif %}
+            {% if next %}
+            <h4><a href="/blog/archive/{{ next }}/">Следна</a></h4>
+            {% endif %}
+        </div>
+    <!-- sidebar -->
+    <aside id="sidebar">
+
+    <ul>
+        <li class="block">
+	        <h4 class="page-heading-categories"><span>Категории</span></h4>
+	        <ul>
+	            {% if categories %}
+	            {% for category in categories %}
+	            <li class="cat-item"><a href="/blog/category/{{ category.name.lower }}/"
+	                title="{{ category.name.capitalize }}">
+	                 {{ category.name.capitalize }}</a>
+	             </li>
+	             {% endfor %}
+	             {% endif %}
+	        </ul>
+        </li>
+		<li class="block">
+	        <h4 class="page-heading-tags"><span>Тагови</span></h4>
+	        <ul>
+	            {% if tags %}
+	            {% for tag in tags %}
+	            <li class="cat-item-tag"><a href="/blog/tag/{{ tag.name.lower }}/"
+	                title="{{ tag.name.capitalize }}">
+	                 {{ tag.name.capitalize }}</a>
+	             </li>
+	             {% endfor %}
+	             {% endif %}
+	        </ul>
+        </li>
+
+	<li class="block">
+	<h4 class="page-heading-archive"><span>Архива</span></h4>
+	<ul>
+	{% for year, month_list in archives %}
+	{{ year }} архива: 
+	{% for month, has_link, rom_month in month_list %}
+	{% if has_link %}<a href="/blog/{{ month.month }}/{{ month.year }}/">{% endif %}
+	{{ month|date:"M" }}
+        {{ rom_month }}
+	{% if has_link %}</a>{% endif %}
+	{% endfor %}
+	{% endfor %}
+	</ul>
+
+	</li>
+      </ul>
+              
+     </aside>
+            <!-- ENDS sidebar -->
+
+        </div>
+    </div>
+        {% endblock content %}

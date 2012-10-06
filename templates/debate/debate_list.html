@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}Дебати{% endblock %}
+
+{% block content %}
+<!-- MAIN -->
+<div id="main">
+    <div class="wrapper clearfix">
+        <h2 class="page-heading"><span>ДЕБАТИРАЈ!</span></h2>
+
+        <!-- thumbs -->
+        <div class="portfolio-thumbs clearfix" >
+            {% for debate in object_list %}
+            <figure class="debate-box">
+	            <figcaption >
+	            	<strong>{{ debate.title }}</strong>
+	            	<span>{{ debate.description|removetags:"p"|safe|truncatechars:230 }}</span>
+	           		<img src="/static/img/images/debata-hover.png" alt="debata" />
+	            	<a href="{{ debate.get_absolute_url }}" class="opener"></a>
+	            </figcaption>
+            <a href="{{ debate.get_absolute_url }}" class="thumb" style = "display: block; z-index: 100; position: relative"><img src="{{ debate.image.url }}" alt="debata" /></a>
+            </figure>
+            {% empty %}
+                <p>{% trans "There are no debates." %}</p>
+            {% endfor %}
+            
+            <hr />
+            {% if is_paginated %}
+            <div class="pagination">
+                <span class="page-links">
+                    {% if page_obj.has_previous %}
+                        <a href="{% url 'list-debates' get_place.url %}?page={{ page_obj.previous_page_number }}">&laquo; {% trans "previous" %} | </a>
+                    {% endif %}
+                    <span class="page-current">
+                        {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}
+                    </span>
+                    {% if page_obj.has_next %}
+                        <a href="{% url 'list-debates' get_place.url %}?page={{ page_obj.next_page_number }}"> | {% trans "next" %} &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+            {% endif %}   
+        </div>
+    </div>
+</div>
+{% endblock %}
+

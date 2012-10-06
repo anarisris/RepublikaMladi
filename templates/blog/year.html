@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Posts in {{ by_month.1|date:"Y"}}{% endblock %}
+
+{% block content %}
+
+{% if post_error %}
+{{ post_error }}
+{% else %}
+
+{% if by_month %}
+{% for i in by_month %}
+{% for key, value in i.items %} <b>{{ key|date:"M" }}</b>
+{% if value %}
+<ul>
+    {% for x in value %}
+    <li>
+    <a href="{{ x.get_absolute_url }}" title="{{ x.title }}">
+        {{ x.title }}
+    </a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% else %}
+- There were no posts in {{ key|date:"F" }}
+{% endif %}
+
+<br>
+
+{% endfor %}
+{% endfor %}
+{% endif %}
+{% endif %}
+
+{% endblock%}
+

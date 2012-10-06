@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Направи профил{% endblock %}
+{% block content %}
+<div id="main">
+                                <div class="wrapper clearfix">
+
+{% if error %}
+        <p>{{ error }}</p>
+{% else %}
+        <form action="." method="post">
+
+                {{ form }}
+
+            {% csrf_token %}
+            <div style="margin-top: 30px">
+            	<input type="submit" class="submit-post" value="Креирај" />
+            	</div>
+        </form>
+{% endif %}
+</div>
+</div>
+{% endblock %}
+~                                                                                                                                                    
+~                   

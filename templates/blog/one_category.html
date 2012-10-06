@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Категорија - {{ category.capitalize }}{% endblock %}
+
+{% block content %}
+
+<div id="main">
+    <div class="wrapper clearfix">
+    	    <h2 class="page-heading">
+            	<span>Текстови со категоријата <span id="selected-tag">"{{ category.capitalize }}"</span></span>
+            </h2>
+        <div id="posts-list">            
+            <div class="portfolio-thumbs clearfix">		
+				{% if posts %}
+				    {% for post in posts %}
+				<figure>
+					<figcaption>
+						<div class="post-teaser">
+							<a href="/blog/{{ post.get_absolute_url }}">
+							<em style="display: block; float: left; margin: 10px 10px 0px 10px; font-weight: bold; position: relative; font-size: 12px; color: #ec1c24;">{{ post.published|date:"j" }} {{ post.published|date:"F, Y" }}</em>
+							<span style="display: block; margin: 10px; position: none;">{{ post.title }}</span>
+							</a>
+						</div>
+					</figcaption>		        		
+						 <a href="{{ post.image.url }}" data-rel="prettyPhoto"> class="thumb post-img"><img src="{{ post.image.url }}" alt="Alt text" /></a>
+						 <a class = "more" href="/blog/{{ post.get_absolute_url }}">прочитај повеќе&#8594;</a>
+				</figure>
+				
+				    {% endfor %}
+				{% endif %}
+
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}

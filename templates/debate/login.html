@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load wysiwyg %}
+{% load facebook %}
+{% load twitter %}
+{% load foursquare %}
+{% block title %}{% trans "Логирај се" %}{% endblock %}
+{% block content %}
+{% facebook_button %}
+{% twitter_button %}
+{% endblock %}
+

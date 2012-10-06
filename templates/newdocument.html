@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %} Контакт {% endblock %}
+{% block content %}
+<!-- MAIN -->
+<div id="main">	
+<div class="wrapper clearfix">
+
+<h2 class="page-heading"><span>КОНТАКТ</span></h2>
+<form action="." method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{ form.subject.errors }}
+        <label for="id_subject">Наслов на пораката:</label>
+        {{ form.subject }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.message.errors }}
+        <label for="id_message">Зошто мислите дека овој документ е важен? <br />Ако имате само линк од документот оставете го во ова поле:</label>
+        {{ form.message }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.sender.errors }}
+        <label for="id_sender">Email адреса:</label>
+        {{ form.sender }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.attach.errors }}
+        <label for="id_sender">Прикачи:</label>
+        {{ form.attach }}
+    </div>
+    <p>
+    <div style="clear: both;"></div>
+    <input type="submit" value="Испрати" class="btn1 btn-primary1" /></p>
+</form>
+
+</div>
+</div>	
+<!-- page content -->
+{% endblock %}	

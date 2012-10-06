@@ -1,0 +1,284 @@
+<!doctype html>
+<html class="no-js" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+
+	<head>        <!-- ICO -->
+                <link rel="shortcut icon" href="/static/img/republika-mladi-ikona-mala.ico">
+		<meta property="og:image" content="/static/img/republika-mladi-ikona.png">
+		<meta charset="utf-8"/>
+                <title>{% block title %}{% endblock %}</title>
+		
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+                <link rel="stylesheet" media="all" href="/static/css/style.css"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
+                <!--Debate css-->
+                <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" media="screen" />
+                <link rel="stylesheet" type="text/css" href="/static/css/ui.notify.css" media="screen" />
+                <link rel="stylesheet" type="text/css" href="/static/css/smoothness/jquery-ui-1.8.13.custom.css" media="screen" />
+                <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-wysihtml5-0.0.2.css" media="screen">
+                <link rel="stylesheet" type="text/css" media="screen" href="/static/css/screen.css"/>
+
+                <!--ENDS Debate css-->
+		
+		<!-- JS -->
+                <script src="/static/js/jquery-1.6.4.min.js"></script>
+                <script src="/static/js/css3-mediaqueries.js"></script>
+                <script src="/static/js/custom.js"></script>
+                <script src="/static/js/tabs.js"></script>
+		
+		<!-- Tweet -->
+                <link rel="stylesheet" href="/static/css/jquery.tweet.css" media="all"  /> 
+                <script src="/static/js/tweet/jquery.tweet.js" ></script> 
+		<!-- ENDS Tweet -->
+		
+		<!-- superfish -->
+                <link rel="stylesheet" media="screen" href="/static/css/superfish.css" /> 
+                <script  src="/static/js/superfish-1.4.8/js/hoverIntent.js"></script>
+                <script  src="/static/js/superfish-1.4.8/js/superfish.js"></script>
+                <script  src="/static/js/superfish-1.4.8/js/supersubs.js"></script>
+		<!-- ENDS superfish -->
+		
+		<!-- prettyPhoto -->
+                <script  src="/static/js/prettyPhoto/js/jquery.prettyPhoto.js"></script>
+                <link rel="stylesheet" href="/static/js/prettyPhoto/css/prettyPhoto.css"  media="screen" />
+		<!-- ENDS prettyPhoto -->
+		
+		<!-- poshytip -->
+                <link rel="stylesheet" href="/static/js/poshytip-1.1/src/tip-twitter/tip-twitter.css"  />
+                <link rel="stylesheet" href="/static/js/poshytip-1.1/src/tip-yellowsimple/tip-yellowsimple.css"  />
+                <script  src="/static/js/poshytip-1.1/src/jquery.poshytip.min.js"></script>
+		<!-- ENDS poshytip -->
+		
+		<!-- GOOGLE FONTS -->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
+		
+		<!-- Flex Slider -->
+                <link rel="stylesheet" href="/static/css/flexslider.css" >
+                <script src="/static/js/jquery.flexslider-min.js"></script>
+		<!-- ENDS Flex Slider -->
+		
+		<!-- Less framework -->
+                <link rel="stylesheet" media="all" href="/static/css/lessframework.css"/>
+		
+		<!-- modernizr -->
+                <script src="/static/js/modernizr.js"></script>
+		
+		<!-- SKIN -->
+                <link rel="stylesheet" media="all" href="/static/css/skin.css"/>
+                
+	
+		<!-- reply move form -->
+                <script src="/static/js/moveform.js"></script>
+        <!-- push youtube iframe in the back-->
+        <script>
+        $(document).ready(function() {
+		    $("iframe").each(function(){
+				var ifr_source = $(this).attr('src');
+				var wmode = "wmode=transparent";
+				if(ifr_source && ifr_source.indexOf('?') != -1) {
+					var getQString = ifr_source.split('?');
+					var oldString = getQString[1];
+					var newString = getQString[0];
+					$(this).attr('src',newString+'?'+wmode+'&'+oldString);
+				}
+				else if (ifr_source) $(this).attr('src',ifr_source+'?'+wmode);
+		    });
+	});
+		</script>
+        <!-- Toggle visibility-->
+        <script>
+		  function show(id) {
+			document.getElementById(id).style.visibility = "visible";
+		  }
+		  function hide(id) {
+			document.getElementById(id).style.visibility = "hidden";
+		  }
+		</script>
+<!-- Load JavaScript -->
+<script src="http://www.google.com/jsapi?key=ABQIAAAATqrYeRgzMa92HeAJ337iJhRWlTAuTwYT79cviOHriikXgTyaXRSApoqdJPf4dwJKYRnFn_s4iABNkg" type="text/javascript"></script>
+<script src="/static/js/wysihtml5-0.3.0_rc2.js"></script>
+<script type="text/javascript">
+google.load("jquery", "1.7.1", {uncompressed:false});
+google.load("jqueryui", "1.8.16", {uncompressed:false});</script>
+<script src="/static/js/bootstrap-wysihtml5-0.0.2.js"></script>
+<!-- End load JavaScript -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-25784730-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+	</head>
+	
+	<body lang="en">
+        <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=267288173381526";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+	<!--	<div id="fb-root"></div>V
+                <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '239256712843501', // App ID
+      channelUrl : 'republikamladi.mk/xd_reciever.html', // Channel File
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
+    // Additional initialization code here
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+</script>
+		<script>(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=239256712843501";
+				fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));</script> 
+	-->
+		<header class="clearfix">
+        	<div class="wrapper">
+        				<a class="exit"href="/privatnost/">Приватност</a>
+        				<a class="exit"href="/odnesuvanje/">Код на однесување</a>
+                        {% if user.is_authenticated %}
+						<a class="exit"href="/social/logout/">Одјави се</a>
+                        <a class="exit" href="/debate/userprofile/">{{ user }}</a>
+                        {% endif %}	
+            </div>
+        <a href="/index/" id="logo"><img src="/static/img/images/strap.png" alt="Republika"></a>
+		
+			<div class="wrapper">
+                            <!-- <a href="/index/" id="logo"><img  src="/static/img/ana/logo.png" alt="Republika"></a> -->
+
+				<nav>
+					<ul id="nav" class="sf-menu">
+                                            <li><a href="/index/">Дома</a></li>
+						<li><a href="/blog/">Што е ново?</a></li>
+                                                <li><a href="/page/">За Република Млади</a>
+							<ul>
+								<li><a href="/page/">За иницијативата</a></li>
+								<li><a href="/inicijatori/">Иницијатори</a></li>								
+								<li><a href="/dokumenti/">Документи</a></li>
+								<li><a href="/za-stranata/">За веб страната</a></li>
+							</ul>
+					  </li>
+						<li><a href="/debate/">Дебатирај!</a></li>
+						<li><a href="/dokumenti/">Инфо деск</a></li>
+						<li><a href="/general/">Контакт</a></li>
+					</ul>
+					<div id="combo-holder"></div>
+				</nav>
+			</div>
+		</header>
+
+                 <div class="content">
+                     {% block content %}
+                     {% endblock %}
+                 </div>
+
+		
+		
+		
+		<footer>
+			<div class="wrapper">
+			
+				<ul  class="widget-cols clearfix">
+					<li class="first-col">
+						
+						<div class="widget-block">
+							<h5>Последни вести</h5>
+							<div class="recent-post">
+                                                         {% for post in posts_latest %}
+                                                         <p><a href="/blog{{ post.get_absolute_url }}">{{ post }}</a></p>
+                                                         {% endfor %}
+							</div>
+						</div>
+					</li>
+					
+					<li class="second-col" style="width: 143px;">
+						
+						<div class="widget-block">
+							<h5>Поврзи се!</h5>
+                            <ul id="social-bar">
+                                <li id="fb"><a href="http://www.facebook.com/republikamladi" title="Become a fan" target="_blank"></a></li>
+                                <li id="tw"><a href="http://www.twitter.com/republikamladi" title="Follow my tweets" target="_blank"></a></li>
+                                <!--<li id="gp"><a href="http://www.google.com" title="Add to the circle" target="_blank"></a></li>-->
+						</ul>
+						</div>
+						
+					</li>
+					
+					<li class="third-col">
+						
+						<div class="widget-block">
+							<div id="tweets" class="footer-col tweet">
+		         				<h5>Twitter feed</h5>
+		         			</div>
+		         		</div>
+		         		
+					</li>
+					
+					<li class="fourth-col">
+						
+						<div class="widget-block">
+							<h5>Facebook</h5>
+<div class="fb-like-box" style="background-color:white;border:none;padding-bottow:0;" data-href="http://www.facebook.com/republikamladi" data-width="292" data-height="167" data-show-faces="true" data-stream="false" data-header="false"></div>
+						</div>
+		         		
+					</li>	
+				</ul>
+				
+								<div id="disclaimer">
+					<img src="/static/img/images/usaid.png" style = "margin-right: 20px;
+float: left; ">This web site is made possible by the generous support of the American people through the United states Agency for International Development (USAID). The information provided on this Web site is not official U.S. Government information and does not represent the views or positions of the U.S. Agency for International Development or the U.S. Government.
+					</div>				
+				
+				
+		<!--		<div class="footer-bottom">
+					<div class="right">
+						<ul id="social-bar">
+						</ul>
+					</div>
+				</div>-->
+				
+			</div>
+            <img src="/static/img/images/foot.png">
+		</footer>
+<script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/static/js/bootstrap-tooltip.js" type="text/javascript"></script>
+<script src="/static/js/bootstrap-popover.js" type="text/javascript"></script>
+<script src="/static/js/site.js" type="text/javascript"></script>
+<script src="/static/js/jquery.notify.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+        $(document).ready(function(){
+            $(".alert").alert();
+        });
+		</script>
+
+					
+	</body>
+	
+</html>

@@ -1,0 +1,3 @@
+Кликнете на линкот за да го активирате профилот:
+http://{{ site }}/accounts/activate/{{ activation_key }}
+Имате {{ expiration_days }} дена да ја извршите оваа акција.
