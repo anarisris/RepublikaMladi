@@ -1,0 +1,213 @@
+/* GENERAL ------------------------------------------------------------*/
+
+body{
+	background: #e6e6e6 url(../img/images/bg.png) repeat;
+	color: #434647;
+}
+
+body,
+.home-block-heading span,
+.page-heading span{
+}
+
+body a{ color: #434647; }
+
+body a:hover,
+#top-widget-holder a:hover,
+#nav>li>a:hover,
+.project-heading .launch:hover{
+}
+
+h1,h2,h3,h4,h5,h6{ color: #434647; }
+
+/* Selection colours (easy to forget) */
+
+::selection 	 	{background: #59b499; color: #fff; }
+::-moz-selection 	{background: #59b499; color: #fff; }
+img::selection 		{background: transparent;}
+img::-moz-selection	{background: transparent;}
+body {-webkit-tap-highlight-color: #59b499;}
+
+/* HEADER ------------------------------------------------------------
+
+header{ background: #444 url(../img/header.png) bottom left repeat-x; }*/
+
+header {
+	display: block;
+	padding: 7px 0;
+	text-align: center;
+}
+
+header > img {
+	margin: 0 auto;
+	height: 125px;
+	display:block;
+	width: 465px;
+	padding-top: 11px;
+}
+
+/* WIDGETS------------------------------------------------*/
+
+#top-widget-holder{
+    background: #333;
+    color: #aaaaaa;
+}
+
+#top-widget-holder h4{
+	color: #ebebe8;
+}
+
+#top-widget-holder a{
+	color: #fff;
+}
+
+/* NAVIGATION ------------------------------------------------------------*/
+
+nav a{ color: #E2E0D7; }
+
+#nav>li.current-menu-item>a,
+#nav>li.current_page_item>a{
+	color: #E2E0D7;
+}
+
+#nav>li a:hover{
+	text-decoration: underline;
+	color: #59b499;
+}
+
+/* sub navigation -----------------------------------------------------*/
+
+#nav>li ul{ background: #dbdbdb; }
+
+#nav>li ul li a{ 
+	color: #434647;
+	font-size: 16px;
+	font-weight: 700;
+	overflow: hidden;
+	text-shadow: 1px 1px 0px white;
+	text-transform: uppercase;
+}
+
+#nav>li ul li a:hover,
+#nav>li ul li:nth-child(even) a:hover{
+	text-decoration: underline;
+	color: #59b499;
+}
+
+#nav>li ul li:nth-child(even) a{
+	background: #dbdbdb;
+}
+
+
+/* BREADCRUMBS ------------------------------------------------------------*/
+
+.breadcrumbs{ color: #444; }
+
+.breadcrumbs a{ color: #888; }
+
+
+/* CONTACT CONTENT ------------------------------------------------------------*/
+
+#contact-sidebar{ background: #e2e0d7; }
+
+
+/* SIDEBAR ------------------------------------------------------------*/
+
+
+/* HOME ------------------------------------------------------------*/
+
+.home-block figcaption{
+	background: #59b499;
+	color: #f1f1f1;
+}
+
+/* PORTFOLIO ------------------------------------------------------------*/
+
+.portfolio-thumbs figcaption {
+	max-width: 100%;
+	max-height: 100%;
+	color: #434647;
+}
+
+/* PROJECT ------------------------------------------------------------*/
+
+.project-heading .launch{ color: #888; }
+
+.project-info strong{ color: #444; }
+
+.project-pager a{ color: #444; }
+
+.project-pager a:hover{ 	color: #59b499; }
+
+/* RELATED PROJECTS ---------------------------------------------------*/
+
+.related-heading{ color: #444; }
+
+.related-projects .thumb{ background: #59b499 url(../img/plus.png) center center no-repeat; }
+
+
+/* BLOG ------------------------------------------------------------*/
+
+#posts-list .feature-image,
+#post-content .feature-image{ background: #59b499 url(../img/plus.png) center center no-repeat; }
+
+article .meta{
+	border-top: 1px solid #cecece;
+	border-bottom: 1px solid #cecece;
+	overflow: hidden;
+}
+
+#posts-list .entry-date{ color: #ffffff;}
+
+/* PAGE NAVIGATION ------------------------------------------------------------*/
+
+.page-navigation a{
+	background: #444 url(../img/noise.png) repeat;
+	color: #f1f1f1;
+}
+
+.page-navigation a:hover{
+	background: #59b499;
+	color: #fff;
+}
+
+/* PAGER ------------------------------------------------------------*/
+
+.pager li a{ color: #444; }
+
+.pager li:hover a{
+	color: #fff;
+	background: #59b499;
+}
+
+.pager li.active a{ 
+	background: #444;
+	color: #fff;
+}
+
+/* SLIDER ------------------------------------------------------------*/
+
+#slider-holder #headline{ background: #e2e0d7; }
+
+
+
+/* FOOTER ------------------------------------------------------------*/
+
+
+footer .wrapper {
+	top: 16px;
+	margin-bottom: -17px;
+	margin-top: 100px;
+	position: relative;
+	z-index: 50;
+	background-color: #96e2cb;
+	min-height: 300px;
+}
+
+.widget-cols {
+	margin: 15px;
+}
+
+.footer-bottom{
+	border-top: 1px solid #ccc;
+}
