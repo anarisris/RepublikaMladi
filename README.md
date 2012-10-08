@@ -16,4 +16,5 @@ For the application to run you need:
 We used the following JQuery plugins for design purposes:  
 1. [Superfish](http://archive.plugins.jquery.com/project/Superfish);  
 2. [prettyPhoto](http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/);  
-3. [Poshy Tip](http://vadikom.com/demos/poshytip/).
+3. [Poshy Tip](http://vadikom.com/demos/poshytip/);  
+4. [Tweet](https://github.com/seaofclouds/tweet).
